@@ -15,16 +15,12 @@ public class GradeBook implements ActionListener {
     String surname = null;
     String group = null;
 
-
-
     JFrame frame = new JFrame();
     JButton logoutButton = new JButton("LogOut");
     JLabel helloLabel = new JLabel("");
     JLabel messLabel = new JLabel("Grade Book");
     
     DefaultListModel listModel = new DefaultListModel();
-
-
 
 
     GradeBook(String name1){
@@ -34,12 +30,10 @@ public class GradeBook implements ActionListener {
         helloLabel.setBounds(50,45,250,25);
         messLabel.setBounds(20,80,100, 25 );
 
+        String column = String.format("|%-40.25s|%-20.18s|%-2s|","Teacher", "Subject","Grade");
 
 
-
-
-
-
+        listModel.addElement(column);
 
 
 
@@ -128,12 +122,6 @@ public class GradeBook implements ActionListener {
             Login login = new Login();
             frame.dispose();
 
-
-
-
         }
-
-
-
     }
 }

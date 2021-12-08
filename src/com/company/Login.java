@@ -13,8 +13,8 @@ public class Login implements ActionListener {
     JComboBox userList = new JComboBox(userString);
 
 
-    JTextField userIDField = new JTextField();
-    JPasswordField userPasswordField = new JPasswordField();
+    JTextField userIDField = new JTextField("Jelena");
+    JPasswordField userPasswordField = new JPasswordField("Dauksevic");
 
     JLabel userIDLabel = new JLabel("Username: ");
     JLabel userPasswordLabel = new JLabel("Password: ");
@@ -97,6 +97,15 @@ public class Login implements ActionListener {
                 String pass1 = String.valueOf(userPasswordField.getPassword());
                 if (name1.isEmpty() || pass1.isEmpty()) {
                     messageLabel.setText("Wrong input");
+                }else{
+                    DataBase dataBase = new DataBase();
+                    int ats = dataBase.teacherLogin(name1, pass1);
+                    if(ats == 1){
+                        Teacher teacher = new Teacher(name1, pass1);
+                        frame.dispose();
+                    }else if(ats == 0){
+                        messageLabel.setText("Wrong input");
+                    }
                 }
             }
 
