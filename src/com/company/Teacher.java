@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
-import java.util.concurrent.ExecutionException;
 
 public class Teacher implements ActionListener {
     Connection con = null;
@@ -24,14 +23,14 @@ public class Teacher implements ActionListener {
     JTextField idText = new JTextField();
     JTextField surnameText = new JTextField();
     JTextField gruopText = new JTextField();
-    String choice = "History";
-    String choiceString[] = {"Math", "Programming", "IS", "DataBase", "History"};
-    JComboBox choiceList = new JComboBox(choiceString);
+    String choice = "";
+    JComboBox choiceList = new JComboBox();
     JTextField gradeText = new JTextField();
     DefaultListModel listModel = new DefaultListModel();
     JButton addButton = new JButton("ADD Grade");
     JButton updateButton = new JButton("Update Grade");
     JButton deleteButton = new JButton("Delete Grade");
+    JLabel noteLabel = new JLabel("Note: \"id input only needed when updating or deleting\"");
 
     Teacher(String name1, String surname){
         name = name1;
@@ -47,9 +46,6 @@ public class Teacher implements ActionListener {
         groupLabel.setBounds(140, 365, 50, 25);
         gruopText.setBounds(140, 395, 50, 25);
         subjectLabel.setBounds(195, 365, 75, 25);
-        choiceList.setSelectedIndex(4);
-        choiceList.setBounds(195,395,120,25);
-        choiceList.addActionListener(this);
         gradeLabel.setBounds(320, 365, 50, 25);
         gradeText.setBounds(320,395, 50, 25);
 
@@ -57,6 +53,7 @@ public class Teacher implements ActionListener {
         updateButton.setBounds(120, 440, 120, 30);
         deleteButton.setBounds(245, 440, 120, 30);
         messageLabel.setBounds(15, 475, 200, 30);
+        noteLabel.setBounds(10,515,400,30);
 
         String column = String.format("|%-2s|%-25.15s|%-10.10s|%-17.15s|%-2s|",
                 "Id",
@@ -91,12 +88,35 @@ public class Teacher implements ActionListener {
                         gradeBook.getGroup(),
                         gradeBook.getSubject(),
                         gradeBook.getGrade() );
-
                 listModel.addElement(info);
             }
             JList list = new JList(listModel);
             list.setBounds(10,105, 400,250);
             frame.add(list);
+            st.close();
+        } catch (SQLException ex) {
+            System.out.println("Not connected");
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+
+            }
+        }
+        try {
+            String query = "SELECT subject FROM teacher_subject WHERE surname='"+surname+"'";
+            con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema", "root", "");
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                String subject = rs.getString("subject");
+                choiceList.addItem(subject);
+            }
+            choiceList.setBounds(195,395,120,25);
+            choiceList.addActionListener(this);
             st.close();
         } catch (SQLException ex) {
             System.out.println("Not connected");
@@ -131,6 +151,7 @@ public class Teacher implements ActionListener {
         frame.add(messageLabel);
         frame.add(updateButton);
         frame.add(deleteButton);
+        frame.add(noteLabel);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(450,600);

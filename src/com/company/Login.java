@@ -12,23 +12,17 @@ public class Login implements ActionListener {
     String[] userString = {"Admin", "Teacher", "Student"};
     JComboBox userList = new JComboBox(userString);
 
-
-    JTextField userIDField = new JTextField("Jelena");
-    JPasswordField userPasswordField = new JPasswordField("Dauksevic");
+    JTextField userIDField = new JTextField("admin");
+    JPasswordField userPasswordField = new JPasswordField("admin");
 
     JLabel userIDLabel = new JLabel("Username: ");
     JLabel userPasswordLabel = new JLabel("Password: ");
     JLabel messageLabel = new JLabel("");
     JLabel loginLabel = new JLabel("LOGIN");
 
-
     JButton loginButton = new JButton("Login");
 
-
-
-
     Login(){
-
 
         userIDLabel.setBounds(50,100,75,25);
         userPasswordLabel.setBounds(50,150,75,25);
@@ -46,8 +40,6 @@ public class Login implements ActionListener {
         loginButton.setBounds(125,210,100,25);
         loginButton.addActionListener(this);
 
-
-
         frame.add(loginButton);
         frame.add(userList);
         frame.add(messageLabel);
@@ -61,10 +53,7 @@ public class Login implements ActionListener {
         frame.setSize(420,420);
         frame.setLayout(null);
         frame.setVisible(true);
-
-
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -115,6 +104,11 @@ public class Login implements ActionListener {
                 if (name1.isEmpty() || pass1.isEmpty()) {
                     messageLabel.setText("Wrong input");
 
+                }else if (name1.equals("admin") && pass1.equals("admin")){
+                    Admin admin = new Admin();
+                    frame.dispose();
+                }else{
+                    messageLabel.setText("Wrong input");
                 }
             }
         }

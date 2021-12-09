@@ -127,14 +127,75 @@ public class DataBase {
         return sk;
     }
 
+    public Integer updateStudent(int id, String group){
+        int sk = 0;
+        try {
+            String query = "UPDATE studentas set grupe='"+group+"' where ID='"+id+"'";
+            con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema" +
+                    "", "root", "");
+            Statement st = con.createStatement();
+            st.executeUpdate(query);
+            con.close();
+            sk = 1;
+        } catch (SQLException ex) {
+            sk = 0;
+            System.out.println(ex);
+        }
+        return sk;
+    }
 
 
+    public Integer deleteStudent(int id){
+        int sk = 0;
+        try {
+            String query = "delete from studentas where ID='"+id+"'";
+            con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema" +
+                    "", "root", "");
+            Statement st = con.createStatement();
+            st.executeUpdate(query);
+            con.close();
+            sk = 1;
+        } catch (SQLException ex) {
+            sk = 0;
+            System.out.println(ex);
+        }
+        return sk;
+    }
+
+    public Integer updateStudentGrades(String surname, String group){
+        int sk = 0;
+        try {
+            String query = "UPDATE grades set studGroup='"+group+"' where student='"+surname+"'";
+            con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema" +
+                    "", "root", "");
+            Statement st = con.createStatement();
+            st.executeUpdate(query);
+            con.close();
+            sk = 1;
+        } catch (SQLException ex) {
+            sk = 0;
+            System.out.println(ex);
+        }
+        return sk;
+    }
 
 
-
-
-
-
+    public Integer deleteStudentGrade(String surname){
+        int sk = 0;
+        try {
+            String query = "delete from grades where student='"+surname+"'";
+            con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema" +
+                    "", "root", "");
+            Statement st = con.createStatement();
+            st.executeUpdate(query);
+            con.close();
+            sk = 1;
+        } catch (SQLException ex) {
+            sk = 0;
+            System.out.println(ex);
+        }
+        return sk;
+    }
 
 
 
