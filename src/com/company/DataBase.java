@@ -197,8 +197,128 @@ public class DataBase {
         return sk;
     }
 
+    public String firstSubject(String surname) {
+        String subject = null;
+        try {
+            String query = "SELECT subject FROM `teacher_subject` WHERE surname='"+surname+"'";
+            con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema", "root", "");
+            pst = con.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            if (rs.next()){
+                subject = rs.getString("subject");
+            }
+            con.close();
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return subject;
+    }
+
+    public Integer insertStudent(String name, String surname, String group){
+        int sk = 0;
+        try {
+            String query = "INSERT INTO studentas (name,surname,grupe) VALUES('" + name + "','" + surname + "','" + group + "')";
+            con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema" +
+                    "", "root", "");
+            Statement st = con.createStatement();
+            st.executeUpdate(query);
+            con.close();
+            sk = 1;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return sk;
+    }
+
+    public Integer insertSubject(String surname, String subject){
+        int sk = 0;
+        try {
+            String query = "INSERT INTO teacher_subject (surname,subject) VALUES('" + surname + "','" + subject + "')";
+            con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema" +
+                    "", "root", "");
+            Statement st = con.createStatement();
+            st.executeUpdate(query);
+            con.close();
+            sk = 1;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return sk;
+    }
+
+    public Integer deleteTeacherSubject(String surname, String subject){
+        int sk = 0;
+        try {
+            String query = "delete from teacher_subject where surname='"+surname+"' AND subject='"+subject+"'";
+            con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema" +
+                    "", "root", "");
+            Statement st = con.createStatement();
+            st.executeUpdate(query);
+            con.close();
+            sk = 1;
+        } catch (SQLException ex) {
+            sk = 0;
+            System.out.println(ex);
+        }
+        return sk;
+    }
+
+    public Integer deleteTeacher(String surname, String name){
+        int sk = 0;
+        try {
+            String query = "delete from mokytojas where name='"+name+"' AND  surname='"+surname+"'";
+            con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema" +
+                    "", "root", "");
+            Statement st = con.createStatement();
+            st.executeUpdate(query);
+            con.close();
+
+            try {
+                String query1 = "delete from teacher_subject where surname='" + surname + "'";
+                con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema" +
+                        "", "root", "");
+                Statement st1 = con.createStatement();
+                st1.executeUpdate(query1);
+                con.close();
+            }catch (SQLException e){
+                System.out.println(e);
+            }
 
 
+            sk = 1;
+        } catch (SQLException ex) {
+            sk = 0;
+            System.out.println(ex);
+        }
+        return sk;
+    }
 
+    public Integer insertTeacher(String name, String surname, String subject){
+        int sk = 0;
+        try {
+            String query = "INSERT INTO mokytojas (name, surname) VALUES('" + name + "','" + surname + "')";
+            con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema" +
+                    "", "root", "");
+            Statement st = con.createStatement();
+            st.executeUpdate(query);
+            con.close();
+            try {
+                String query1 = "INSERT INTO teacher_subject (surname, subject) VALUES('" + surname + "','" + subject + "')";
+                con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema" +
+                        "", "root", "");
+                Statement st1 = con.createStatement();
+                st1.executeUpdate(query1);
+                con.close();
+            }catch (SQLException e){
+                System.out.println(e);
+            }
+            sk = 1;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return sk;
+    }
 
 }

@@ -55,6 +55,10 @@ public class Teacher implements ActionListener {
         messageLabel.setBounds(15, 475, 200, 30);
         noteLabel.setBounds(10,515,400,30);
 
+
+        DataBase dataBase = new DataBase();
+        choice = dataBase.firstSubject(surname); // Parenka subjecta kad atitiktu comboBox
+
         String column = String.format("|%-2s|%-25.15s|%-10.10s|%-17.15s|%-2s|",
                 "Id",
                 "Student",
@@ -62,6 +66,9 @@ public class Teacher implements ActionListener {
                 "Subject",
                 "Grade");
         listModel.addElement(column);
+
+        String column1 = ("--------------------------------------------------------------------------");
+        listModel.addElement(column1);
 
         try {
             String query = "SELECT ID,student,studGroup,subject,grade FROM grades WHERE teacher='"+surname+"'";
@@ -129,6 +136,8 @@ public class Teacher implements ActionListener {
 
             }
         }
+
+
 
         logoutButton.addActionListener(this);
         addButton.addActionListener(this);

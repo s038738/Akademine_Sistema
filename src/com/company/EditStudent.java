@@ -19,7 +19,7 @@ public class EditStudent implements ActionListener {
     JLabel idLabel = new JLabel(" ID");
     JTextField idText = new JTextField();
     JLabel groupLabel = new JLabel(" Group");
-    JTextField gruopText = new JTextField();
+    JTextField groupText = new JTextField();
     JLabel surnameLabel = new JLabel("Surname");
     JTextField surnameText = new JTextField();
 
@@ -32,7 +32,7 @@ public class EditStudent implements ActionListener {
         idLabel.setBounds(10,285,30,25);
         idText.setBounds(10,310, 30, 25);
         groupLabel.setBounds(50, 285, 50, 25);
-        gruopText.setBounds(50, 310, 50, 25);
+        groupText.setBounds(50, 310, 50, 25);
         surnameLabel.setBounds(110, 285, 75, 25);
         surnameText.setBounds(110,310,75,25);
         updateButton.setBounds(190, 310, 75, 25);
@@ -45,6 +45,9 @@ public class EditStudent implements ActionListener {
                 "Surname",
                 "Group");
         listModel.addElement(column);
+
+        String column1 = ("--------------------------------------------------------------------------");
+        listModel.addElement(column1);
 
         try {
             String query = "SELECT ID,name,surname,grupe FROM studentas";
@@ -95,21 +98,17 @@ public class EditStudent implements ActionListener {
         frame.add(idLabel);
         frame.add(idText);
         frame.add(groupLabel);
-        frame.add(gruopText);
+        frame.add(groupText);
         frame.add(updateButton);
         frame.add(deleteButton);
         frame.add(messageLabel);
         frame.add(surnameLabel);
         frame.add(surnameText);
 
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420, 420);
         frame.setLayout(null);
         frame.setVisible(true);
-
-
-
 
     }
 
@@ -122,7 +121,7 @@ public class EditStudent implements ActionListener {
         }
         if (e.getSource() == updateButton){
             String id = idText.getText();
-            String group = gruopText.getText();
+            String group = groupText.getText();
             String surname = surnameText.getText();
             if (id.isEmpty() || group.isEmpty() || surname.isEmpty()) {
                 messageLabel.setText("Wrong input");
@@ -151,7 +150,7 @@ public class EditStudent implements ActionListener {
 
         if (e.getSource() == deleteButton){
             String id = idText.getText();
-            String group = gruopText.getText(); // Reikalauju seip sau, nes noriu :)
+            String group = groupText.getText(); // Reikalauju seip sau, nes noriu :)
             String surname = surnameText.getText();
             if (id.isEmpty() || group.isEmpty() || surname.isEmpty()) {
                 messageLabel.setText("Wrong input");

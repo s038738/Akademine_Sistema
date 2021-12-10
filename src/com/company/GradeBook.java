@@ -30,10 +30,14 @@ public class GradeBook implements ActionListener {
         helloLabel.setBounds(50,45,250,25);
         messLabel.setBounds(20,80,100, 25 );
 
-        String column = String.format("|%-40.25s|%-20.18s|%-2s|","Teacher", "Subject","Grade");
-
-
+        String column = String.format("|%-40.25s|%-20.18s|%-2s|",
+                "Teacher",
+                "Subject",
+                "Grade");
         listModel.addElement(column);
+
+        String column1 = ("--------------------------------------------------------------------------");
+        listModel.addElement(column1);
 
 
 
