@@ -17,9 +17,7 @@ public class AddStudent implements ActionListener {
     JLabel groupLabel = new JLabel("Group:");
     JTextField groupText = new JTextField();
     JLabel messageLabel = new JLabel("");
-
     AddStudent(){
-
         backButton.setBounds(315,25,75,25);
         helloLabel.setBounds(30,25,100,25);
         nameLabel.setBounds(10, 60, 60, 25);

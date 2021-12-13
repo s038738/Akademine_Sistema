@@ -6,25 +6,20 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class EditStudent implements ActionListener {
-
     Connection con = null;
-
     public static Student student = new Student();
 
     JFrame frame = new JFrame();
     JButton backButton = new JButton("Back");
     JButton updateButton = new JButton("Update");
     JButton deleteButton = new JButton("Delete");
-
     JLabel idLabel = new JLabel(" ID");
     JTextField idText = new JTextField();
     JLabel groupLabel = new JLabel(" Group");
     JTextField groupText = new JTextField();
     JLabel surnameLabel = new JLabel("Surname");
     JTextField surnameText = new JTextField();
-
     JLabel messageLabel = new JLabel("");
-
     DefaultListModel listModel = new DefaultListModel();
 
     EditStudent(){
@@ -45,7 +40,6 @@ public class EditStudent implements ActionListener {
                 "Surname",
                 "Group");
         listModel.addElement(column);
-
         String column1 = ("--------------------------------------------------------------------------");
         listModel.addElement(column1);
 
@@ -65,7 +59,6 @@ public class EditStudent implements ActionListener {
                 student.setName(name);
                 student.setSurname(surname);
                 student.setGroup(group);
-
                 String info = String.format("|%-2s|%-25.15s|%-25.15s|%-10.5s|",
                         student.getId(),
                         student.getName(),
@@ -109,9 +102,7 @@ public class EditStudent implements ActionListener {
         frame.setSize(420, 420);
         frame.setLayout(null);
         frame.setVisible(true);
-
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -147,7 +138,6 @@ public class EditStudent implements ActionListener {
                 }
             }
         }
-
         if (e.getSource() == deleteButton){
             String id = idText.getText();
             String group = groupText.getText(); // Reikalauju seip sau, nes noriu :)

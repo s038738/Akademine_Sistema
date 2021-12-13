@@ -18,13 +18,10 @@ public class EditTeacher implements ActionListener {
     JLabel subjectLabel = new JLabel("Subject");
     JTextField subjectText = new JTextField();
     JLabel messageLabel = new JLabel("");
-
     JButton addSubjectButton = new JButton("Add Subject");
     JButton deleteSubjectButton = new JButton("Delete Subject");
     JButton deleteTeacher = new JButton("Delete teacher");
-
     DefaultListModel listModel = new DefaultListModel();
-
     EditTeacher(){
         backButton.setBounds(315,25,75,25);
         nameLabel.setBounds(10,285, 120,25);
@@ -46,7 +43,6 @@ public class EditTeacher implements ActionListener {
 
         String column1 = ("--------------------------------------------------------------------------");
         listModel.addElement(column1);
-
         try {
             String query = "SELECT name,surname FROM mokytojas";
             con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema", "root", "");

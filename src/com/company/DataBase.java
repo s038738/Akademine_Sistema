@@ -22,14 +22,11 @@ public class DataBase {
                 sk = 1;
             }
             con.close();
-
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
         return sk;
-
     }
-
 
     public Integer teacherLogin(String username, String password) {
         int sk = 0;
@@ -40,17 +37,14 @@ public class DataBase {
             pst.setString(1, username);
             pst.setString(2, password);
             rs = pst.executeQuery();
-
             if (rs.next()){
                 sk = 1;
             }
             con.close();
-
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
         return sk;
-
     }
 
     public Integer checkStudent(String surname, String group) {
@@ -62,17 +56,14 @@ public class DataBase {
             pst.setString(1, surname);
             pst.setString(2, group);
             rs = pst.executeQuery();
-
             if (rs.next()){
                 sk = 1;
             }
             con.close();
-
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
         return sk;
-
     }
 
     public Integer insertGrade(String teacher, String student, String studGroup, String subject, String grade){
@@ -91,7 +82,6 @@ public class DataBase {
         return sk;
     }
 
-
     public Integer updateGrade(int id, String grade){
         int sk = 0;
         try {
@@ -102,7 +92,6 @@ public class DataBase {
             st.executeUpdate(query);
             con.close();
             sk = 1;
-
         } catch (SQLException ex) {
             sk = 0;
             System.out.println(ex);
@@ -209,7 +198,6 @@ public class DataBase {
                 subject = rs.getString("subject");
             }
             con.close();
-
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -274,7 +262,6 @@ public class DataBase {
             Statement st = con.createStatement();
             st.executeUpdate(query);
             con.close();
-
             try {
                 String query1 = "delete from teacher_subject where surname='" + surname + "'";
                 con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema" +
@@ -285,8 +272,6 @@ public class DataBase {
             }catch (SQLException e){
                 System.out.println(e);
             }
-
-
             sk = 1;
         } catch (SQLException ex) {
             sk = 0;
@@ -320,5 +305,4 @@ public class DataBase {
         }
         return sk;
     }
-
 }

@@ -1,14 +1,12 @@
 package com.company;
 
 public class Grade {
-
     private int id;
     private String teacher;
     private String student;
     private String group;
     private String subject;
     private int grade;
-
 
     public int getId() {return id;}
     public int getGrade() {return grade;}

@@ -9,9 +9,10 @@ public class Teacher implements ActionListener {
     Connection con = null;
     public static Grade gradeBook = new Grade();
 
-    JFrame frame = new JFrame();
     String name = null;
     String teacherSurname = null;
+
+    JFrame frame = new JFrame();
     JButton logoutButton = new JButton("LogOut");
     JLabel helloLabel = new JLabel("");
     JLabel idLabel = new JLabel("Id");
@@ -55,7 +56,6 @@ public class Teacher implements ActionListener {
         messageLabel.setBounds(15, 475, 200, 30);
         noteLabel.setBounds(10,515,400,30);
 
-
         DataBase dataBase = new DataBase();
         choice = dataBase.firstSubject(surname); // Parenka subjecta kad atitiktu comboBox
 
@@ -82,7 +82,6 @@ public class Teacher implements ActionListener {
                 String group = rs.getString("studGroup");
                 String subject = rs.getString("subject");
                 int grade = rs.getInt("grade");
-
                 gradeBook.setId(id);
                 gradeBook.setStudent(student);
                 gradeBook.setGroup(group);
@@ -117,7 +116,6 @@ public class Teacher implements ActionListener {
             con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema", "root", "");
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
-
             while (rs.next()) {
                 String subject = rs.getString("subject");
                 choiceList.addItem(subject);
@@ -136,8 +134,6 @@ public class Teacher implements ActionListener {
 
             }
         }
-
-
 
         logoutButton.addActionListener(this);
         addButton.addActionListener(this);

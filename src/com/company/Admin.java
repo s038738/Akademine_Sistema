@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Admin implements ActionListener {
-
     JFrame frame = new JFrame();
 
     JButton logoutButton = new JButton("LogOut");
@@ -17,9 +16,7 @@ public class Admin implements ActionListener {
     JButton addStudentButton = new JButton("Add Student");
     JButton editTeacherButton = new JButton("Edit Teacher");
     JButton addTeacher = new JButton("Add Teacher");
-
     Admin(){
-
         logoutButton.setBounds(300,25,75,25);
         helloLabel.setBounds(100,25,75,25);
         editStudentButton.setBounds(30, 70, 120, 30);
@@ -67,9 +64,6 @@ public class Admin implements ActionListener {
         if (e.getSource() == addTeacher){
             AddTeacher addTeacher = new AddTeacher();
             frame.dispose();
-
-
         }
-
     }
 }

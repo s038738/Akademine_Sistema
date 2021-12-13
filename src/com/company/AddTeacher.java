@@ -17,9 +17,7 @@ public class AddTeacher implements ActionListener {
     JLabel subjectLabel = new JLabel("Subject:");
     JTextField subjectText = new JTextField();
     JLabel messageLabel = new JLabel("");
-
     AddTeacher(){
-
         backButton.setBounds(315,25,75,25);
         helloLabel.setBounds(30,25,100,25);
         nameLabel.setBounds(10, 60, 60, 25);
