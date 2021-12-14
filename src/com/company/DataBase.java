@@ -69,7 +69,8 @@ public class DataBase {
     public Integer insertGrade(String teacher, String student, String studGroup, String subject, String grade){
         int sk = 0;
         try {
-            String query = "INSERT INTO grades (teacher,student,studGroup,subject,grade) VALUES('" + teacher + "','" + student + "','" + studGroup + "','" + subject + "','" + grade + "')";
+            String query = "INSERT INTO grades (teacher,student,studGroup,subject,grade) VALUES('" + teacher + "'," +
+                    "'" + student + "','" + studGroup + "','" + subject + "','" + grade + "')";
             con = DriverManager.getConnection("jdbc:mysql://localhost/akademine_sistema" +
                     "", "root", "");
             Statement st = con.createStatement();

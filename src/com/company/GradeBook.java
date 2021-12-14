@@ -69,7 +69,9 @@ public class GradeBook implements ActionListener {
                 gradeBook.setTeacher(teacher);
                 gradeBook.setSubject(subject);
                 gradeBook.setGrade(grade);
-                String info = String.format("|%-40.25s|%-20.18s|%-2d|", gradeBook.getTeacher(), gradeBook.getSubject(),gradeBook.getGrade() );
+                String info = String.format("|%-40.25s|%-20.18s|%-2d|", gradeBook.getTeacher(),
+                        gradeBook.getSubject(),
+                        gradeBook.getGrade() );
                 listModel.addElement(info);
             }
             JList list = new JList(listModel);
